@@ -1,0 +1,153 @@
+/* Halloween Theme */
+:root {
+    --halloween-orange: #ff7b25;
+    --halloween-purple: #7b2d8c;
+    --halloween-green: #2d8c3d;
+    --halloween-dark: #1a1a1a;
+    --halloween-light: #f0e6d2;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--halloween-dark);
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 123, 37, 0.2) 0%, transparent 20%),
+        radial-gradient(circle at 90% 30%, rgba(123, 45, 140, 0.2) 0%, transparent 20%),
+        radial-gradient(circle at 50% 80%, rgba(45, 140, 61, 0.2) 0%, transparent 20%);
+    overflow: hidden;
+}
+
+.game-container {
+    text-align: center;
+    background: rgba(26, 26, 26, 0.8);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(255, 123, 37, 0.4);
+    border: 3px solid var(--halloween-orange);
+    width: 350px;
+    position: relative;
+    z-index: 1;
+}
+
+.game-container::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 18px;
+    background: linear-gradient(45deg, var(--halloween-orange), var(--halloween-purple), var(--halloween-green));
+    z-index: -1;
+    opacity: 0.5;
+}
+
+h1 {
+    font-family: 'Creepster', cursive;
+    margin: 0 0 15px;
+    color: var(--halloween-orange);
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px 0 var(--halloween-purple);
+}
+
+#status {
+    font-size: 1.5rem;
+    margin: 0 0 20px;
+    font-weight: bold;
+    color: var(--halloween-light);
+    font-family: 'Creepster', cursive;
+    letter-spacing: 1px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 8px;
+    margin: 0 auto 20px;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background: rgba(40, 40, 40, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    border: 2px solid var(--halloween-purple);
+    color: var(--halloween-light);
+}
+
+.cell:hover {
+    background: rgba(60, 60, 60, 0.8);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 123, 37, 0.3);
+}
+
+.cell.x {
+    color: var(--halloween-orange);
+    text-shadow: 0 0 10px rgba(255, 123, 37, 0.7);
+}
+
+.cell.o {
+    color: var(--halloween-green);
+    text-shadow: 0 0 10px rgba(45, 140, 61, 0.7);
+}
+
+.winner {
+    animation: glow 0.8s infinite alternate;
+    border-color: var(--halloween-orange);
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 5px var(--halloween-orange); }
+    to { box-shadow: 0 0 20px var(--halloween-orange); }
+}
+
+#reset {
+    padding: 0.7rem 1.5rem;
+    font-size: 1.1rem;
+    background: var(--halloween-purple);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Creepster', cursive;
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+#reset:hover {
+    background: var(--halloween-orange);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 123, 37, 0.4);
+}
+
+/* Halloween bats animation */
+.bat {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%237b2d8c"><path d="M12 3c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 14c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-7c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>');
+    background-size: contain;
+    opacity: 0.6;
+    animation: fly 15s linear infinite;
+    z-index: -1;
+}
+
+@keyframes fly {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(100vw, -100vh) rotate(360deg); }
+}
